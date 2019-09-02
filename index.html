@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Men's Health</title>
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+    <link rel="stylesheet" href="https://use.typekit.net/zcm4hfu.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="libraries/jquery-3.4.1.js"></script>
+    <script src="libraries/jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function() {
+       
+            
+            $("#my-form").on('submit', function(e) {
+                e.preventDefault(); //prevent form from submitting
+
+                // lock down the form
+                $("form").css("display", "none");
+                $("#loading-circle").css("display", "block");
+
+                $("#my-form").children("input").each(function() {
+                    $(this).attr("readonly", true);
+                });
+
+                setTimeout(function() {
+                    // re-enable the form
+                    $("#loading-circle").css("display", "none");
+                    $(".tick-complete").fadeIn(5000, function() {
+                        $(this).css("display", "block")
+
+                        $("#my-form").delay(300, function() {
+                            $(".tick-complete").css("display", "none");
+                            $(this).css("display", "block")
+                        });
+                    })
+
+                    $("#my-form").children("input").each(function() {
+                        $(this).attr("readonly", false);
+                    });
+
+
+                }, 3000);
+            });
+
+            //                Sets off countdown timer on mousemove
+            $(".home").mousemove(function() {
+                $(".hero-timer, .hero-timer-ring, .home-hero-image").delay(300).fadeIn(700, function() {
+                    $(".hero-text").delay(800).fadeIn(1000);
+                })
+            })
+            //                 Hover for stopping timer 
+            $(".hero-timer-ring").hover(stop, go);
+
+            //                 Stops scroll until user interacts with element
+            $(".hero-timer-ring").mouseenter(function() {
+                $("html, body").css({
+                    overflow: "auto",
+                    height: "auto"
+                })
+            })
+
+            //                 Highlight animations for stories section
+            $(".story-left").hover(highlightLeft, normalLeft);
+
+
+
+            $(".story-right-top").hover(highlightRightTop, normalRightTop);
+
+
+
+            $(".story-right-bottom").hover(highlightRightBot, normalRightBot);
+
+            // Hover event listenr for tips section eating
+            $(".eat-well-container").hover(highlightDraw, normalImg);
+
+
+            //            Hover event listener for tips section exercise
+            $(".exercise-container").hover(highlightDrawFlow, normalImgEx);
+
+
+
+        });
+        
+        var normalText = "We know that men get a lot of support and connection by just hanging out and knowing what’s going on with their mates. Yet, blokes aren’t always too good at starting the conversation to check in if they’re worried about a friend.Many men are wired to keep their feelings to themselves, to just ‘get on with it’, ‘she’ll be right’.Men are told directly and indirectly, time after time, that talking about how they’re feeling is somehow weak or un-manly. This kind of thinking can be really harmful, not just for men themselves, but for the people around them, too.";
+        
+        // functions for hover for tips section eating
+
+        function highlightDraw() {
+            $(".eat-well-container img").css({
+                filter: "none"
+            })
+            $("#Watermelon1, #Watermelon2, #Watermelon3").fadeIn(100);
+
+
+
+            $("#Watermelon3").addClass("watermelon3hover");
+
+            $("#Watermelon2").addClass("watermelon2hover");
+
+            $("#Watermelon1").addClass("watermelon1hover");
+
+            $(".strip").addClass("striphover");
+
+        }
+
+
+
+        function normalImg() {
+            $(".eat-well-container img").css({
+                filter: "grayscale(100%)"
+            })
+            $("#Watermelon1, #Watermelon2, #Watermelon3").fadeOut(0.5);
+
+
+
+            $("#Watermelon3").removeClass("watermelon3hover");
+            $("#Watermelon2").removeClass("watermelon2hover");
+            $("#Watermelon1").removeClass("watermelon1hover");
+
+            $(".strip").removeClass("striphover");
+        }
+        // functions for hover for tips section exerc
+        function highlightDrawFlow() {
+            $(".exercise-container img").css({
+                filter: "none"
+            })
+            $("#Flower1, #Flower2, #Flower3, #Flower4").fadeIn(100);
+
+
+            $("#Flower4").addClass("flower4hover");
+            $("#Flower3").addClass("flower3hover");
+
+            $("#Flower2").addClass("flower2hover");
+
+            $("#Flower1").addClass("flower1hover");
+
+            $(".strip2").addClass("strip2hover");
+
+        }
+
+
+
+        function normalImgEx() {
+            $(".exercise-container img").css({
+                filter: "grayscale(100%)"
+            })
+            $("#Flower1, #Flower2, #Flower3, #Flower4").fadeOut(0.5);
+
+
+            $("#Flower4").removeClass("flower4hover");
+            $("#Flower3").removeClass("flower3hover");
+            $("#Flower2").removeClass("flower2hover");
+            $("#Flower1").removeClass("flower1hover");
+
+            $(".strip2").removeClass("strip2hover");
+        }
+
+
+        //    Function for home page animation elements
+
+        function stop() {
+            $("#Inner_Ring").css("animation-play-state", "paused");
+            $(".home-hero-image").css({
+                filter: "none"
+            })
+            $(".hero-text h1").css({
+                background: "linear-gradient(180deg, rgba(255,255,255,0) 60%, #4fc6e4 60%)"
+            })
+
+            $(".scroll-indicator").delay(100).fadeIn(300, function() {
+                $(".scroll-text").delay(600).fadeIn(400);
+            })
+        }
+
+        function go() {
+            $("#Inner_Ring").css("animation-play-state", "running");
+            $(".hero-text h1").css({
+                background: "linear-gradient(180deg, rgba(255,255,255,0) 60%, #aaaaaa 60%)"
+            })
+
+            $(".home-hero-image").css({
+                filter: "grayscale(100%)"
+            })
+
+            $(".scroll-indicator").delay(100).fadeOut(300, function() {
+                $(".scroll-text").delay(200).fadeOut(400);
+            })
+
+        }
+
+        //function for stories page. enables story generator
+        function highlightLeft() {
+            $("img", this).css({
+                filter: "none"
+            })
+
+            $(".header-text h1").animate({
+                'opacity': 0
+            }, 600, function() {
+                $(this).text("Steven from Sydney says...").animate({
+                    opacity: 1
+                }, 400);
+
+
+            })
+
+            $(".main-description p").animate({
+                'opacity': 0
+            }, 600, function() {
+                $(this).text("'I struggled with depression from a very early age. Due to circumstances out of my control my world felt like it was coming out from underneath me, I was constantly bullied at school, I was shy so I could never express how I was feeling and I could never see an end. The only end I could see was ending myself. I dealt with Suicidal thoughts through out my high school years. I later went to a health professional and got some practical advise along with spending more time around encouraging influences. Now Im feeling more encouraged every day and aim to help others and show that there is a way out of the dark tunnel.'").animate({
+                    opacity: 1
+                }, 400);
+
+            })
+        }
+        
+//        Beyond Blue. 2019. "Daniel's Story". Beyond Blue. https://www.beyondblue.org.au/who-does-it-affect/personal-stories/story/daniel 
+
+        function normalLeft() {
+            $("img", this).css({
+                filter: "grayscale(100%)"
+            })
+            $(".header-text h1").animate({
+                'opacity': 0
+            }, 600, function() {
+                $(this).text("Never be afraid to share your feelings.").animate({
+                    opacity: 1
+                }, 400);
+
+            })
+
+            $(".main-description p").animate({
+                'opacity': 0
+            }, 600, function() {
+                $(this).text(normalText).animate({
+                    opacity: 1
+                }, 400);
+
+            })
+
+        }
+        
+//       Beyond Blue. 2019. "Charles Story". Beyond Blue. https://www.beyondblue.org.au/who-does-it-affect/personal-stories/story/charles
+
+        function highlightRightTop() {
+            $("img", this).css({
+                filter: "none"
+            })
+
+            $(".header-text h1").animate({
+                'opacity': 0
+            }, 600, function() {
+                $(this).text("Josh from Perth says...").animate({
+                    opacity: 1
+                }, 400);
+
+
+            })
+            $(".main-description p").animate({
+                'opacity': 0
+            }, 600, function() {
+                $(this).text("'As far back as I can remember, I have been a quiet, nervous kid. It’s not too hard to imagine, because I’m a pretty quiet, nervous twenty-five-year-old too. One who can be painfully shy, more than a little awkward, and who frets about things both real and imagined.  Once I realised exactly what was going on with my mind, and could put a label on it, I began opening up to my friends and family about how I was feeling.'").animate({
+                    opacity: 1
+                }, 400);
+//          Beyond Blue. 2019. "Michael's Story". Beyond Blue.https://www.beyondblue.org.au/who-does-it-affect/personal-stories/story/michael
+
+            })
+        }
+
+        function normalRightTop() {
+            $("img", this).css({
+                filter: "grayscale(100%)"
+            })
+            $(".header-text h1").animate({
+                'opacity': 0
+            }, 600, function() {
+                $(this).text("Never be afraid to share your feelings.").animate({
+                    opacity: 1
+                }, 400);
+
+            })
+
+            $(".main-description p").animate({
+                'opacity': 0
+            }, 600, function() {
+                $(this).text(normalText).animate({
+                    opacity: 1
+                }, 400);
+
+
+            })
+
+        }
+
+        function highlightRightBot() {
+            $("img", this).css({
+                filter: "none"
+            })
+
+            $(".header-text h1").animate({
+                'opacity': 0
+            }, 600, function() {
+                $(this).text("Harry from Cairns says...").animate({
+                    opacity: 1
+                }, 400);
+
+
+            })
+            $(".main-description p").animate({
+                'opacity': 0
+            }, 600, function() {
+                $(this).text("'Who stepped in to help me?  I did. It had to come from me, first...I sincerely desire, optimal health and well-being, and that's what I am out to get. I have, since I was 12, thought of completing suicide, a few times - I will be honest - there have been some tough times, and sometimes what does not kill us does not make us stronger it can weaken us - until we learn how to step-up and stand-up for ourselves against these limiting beliefs floating about in our heads.'").animate({
+                    opacity: 1
+                }, 400);
+
+
+            })
+        }
+
+        function normalRightBot() {
+            $("img", this).css({
+                filter: "grayscale(100%)"
+            })
+            $(".header-text h1").animate({
+                'opacity': 0
+            }, 600, function() {
+                $(this).text("Never be afraid to share your feelings.").animate({
+                    opacity: 1
+                }, 400);
+
+            })
+            $(".main-description p").animate({
+                'opacity': 0
+            }, 600, function() {
+                $(this).text(normalText).animate({
+                    opacity: 1
+                }, 400);
+
+
+            })
+
+        }
+
+    </script>
+
+</head>
+
+<header>
+    <nav>
+
+    </nav>
+
+</header>
+
+<main>
+
+    <section class="home">
+        <div class="hero-timer">
+            <img class="home-hero-image" src="images/hero-man.png" alt="a man that looks serious">
+<!--            Khajotia, N. 2018. "Man Crossed Arms". Pexels. https://www.pexels.com/photo/man-crossed-arms-1516680/-->
+
+        </div>
+
+        <div class="hero-timer-ring">
+            <svg id="Timer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 713.9 713.9">
+                <circle cx="356.95" cy="356.95" r="348.95" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="16" id="Outer_Ring" data-name="Outer Ring" />
+                <circle cx="356.96" cy="356.96" r="348.95" fill="none" stroke="#4fc6e4" stroke-miterlimit="10" stroke-width="12" id="Inner_Ring" data-name="Inner Ring" />
+            </svg>
+
+        </div>
+
+        <div class="hero-text">
+            <h1>Every sixty seconds, another man dies from suicide</h1>
+        </div>
+
+        <div class="scroll-indicator">
+            <svg id="Mouse" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 95.1">
+                <path id="arrow" d="M29.39 75l-10.45 8.48a.4.4 0 0 1-.54 0L8 75" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="1.55" />
+                <rect id="outside" x=".77" y=".77" width="35.58" height="60.33" rx="17.79" ry="17.79" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="1.55" />
+                <rect id="buttonclick" x="16.24" y="13.54" width="5.41" height="11.6" rx="2.71" ry="2.71" fill="#fff" />
+            </svg>
+
+
+        </div>
+
+        <div class="scroll-text">
+            <h2>scroll to make a change</h2>
+
+        </div>
+
+    </section>
+
+    <section class="stories">
+        <div class="header-text">
+            <h1>Never be afraid to share your feelings.</h1>
+        </div>
+
+        <div class="main-description">
+
+            <p>
+              We know that men get a lot of support and connection by just hanging out and knowing what’s going on with their mates. Yet, blokes aren’t always too good at starting the conversation to check in if they’re worried about a friend.Many men are wired to keep their feelings to themselves, to just ‘get on with it’, ‘she’ll be right’.Men are told directly and indirectly, time after time, that talking about how they’re feeling is somehow weak or un-manly. This kind of thinking can be really harmful, not just for men themselves, but for the people around them, too.
+            </p>
+
+        </div>
+        <div class="story-left">
+            <img src="images/stories-1.jpg" alt="fredericks story">
+<!--            LinkedIN Sales Network. 2019. "Man Wearing White Dress Shirt and black blazer". Pexels. https://www.pexels.com/photo/man-wearing-white-dress-shirt-and-black-blazer-2182970/-->
+
+        </div>
+
+        <div class="story-right-top">
+            <img src="images/stories-2.jpg" alt="daves story">
+<!--            Hughes, Elle. 2019. "Man takes selfie". Pexels. https://www.pexels.com/photo/man-takes-selfie-1680175/-->
+        </div>
+
+        <div class="story-right-bottom">
+            <img src="images/stories-3.jpg" alt="bens story">
+<!--            Melo, I. 2019. "Man Wearing Black Crew-Neck T Image". Pexels. https://www.pexels.com/photo/man-wearing-blue-crew-neck-t-shirt-2379005/-->
+
+
+
+        </div>
+
+    </section>
+
+    <section class="tips">
+        <div class="eat-well-title">
+            <h1>Eat nourishing food to feel good</h1>
+
+        </div>
+
+
+        <div class="eat-well-container">
+
+            <img src="images/eat-well.jpg" alt="a plate of oats in bed">
+            <!--            Fotios, Lisa. 2018. "Assorted Fruits on white ceramic plate". Pexels. https://www.pexels.com/photo/assorted-fruits-on-white-ceramic-plate-1161682/-->
+<!--            LovePik. 2019. "Watermelon icon". LovePik. https://lovepik.com/image-400403396/watermelon.html-->
+            <svg id="Watermelon1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 864.55 603.11">
+                <g>
+                    <path d="M0 297.76S349.15 169.9 389.89 160.7s206.63-84 257.51-90.53S847 0 847 0s55.15 258.22-30.19 369.17c-45.47 59.13-103.75 180.65-231.43 196 0 0-300.65 134.93-481.9-104.07C69.49 416.23 30.19 366.14 0 297.76z" fill="#95b341" />
+                    <path d="M45.52 282.68L804.2 16s132.06 336.6-234.33 506.2c0 0-353.45 147.59-524.35-239.52z" fill="#ffeab2" />
+                    <path d="M84.55 268.84s156.82-83.62 176.06-79.29c14.58 3.27 175.8-44.41 175.8-44.41l134.36-57.28 185.41-55.13s116.91 298-207.45 448.14c0 0-312.89 130.66-464.18-212.03z" fill="#ff5765" />
+                    <path d="M465.73 358.77c-5.28-8.76-9.17-25.29-2.86-29.09s20.41 6.57 25.69 15.32 4.45 18.93-1.86 22.74-15.7-.22-20.97-8.97zM376.65 371c1.19-10.15 8.24-25.6 15.56-24.74s12.1 17.69 10.91 27.85S395 391.82 387.73 391s-12.28-9.83-11.08-20zM213.72 336.11c4.6-9.13 16.54-21.21 23.11-17.9s5.3 20.77.69 29.9-13.66 13.89-20.23 10.53-8.17-13.4-3.57-22.53zM180.64 264.78c8.64-5.46 25.09-9.7 29-3.47s-6.13 20.54-14.77 26-18.84 4.85-22.77-1.37-.1-15.69 8.54-21.16zM284.9 279.1c-.95-10.18 2.75-26.76 10.08-27.44s15.52 14.79 16.46 25-4.23 19-11.56 19.67-14.03-7.05-14.98-17.23zM390.85 242.87c-3.56-9.58-4.3-26.55 2.6-29.11s18.83 10.25 22.39 19.83.85 19.43-6 22-15.43-3.13-18.99-12.72zM525.79 306.66c-6.88-7.56-13.91-23-8.46-28s21.29 2.48 28.17 10 8 17.7 2.6 22.66-15.43 2.9-22.31-4.66zM480.08 193.53c-3.56-9.59-4.3-26.55 2.6-29.12s18.83 10.25 22.39 19.84.85 19.43-6.05 22-15.38-3.14-18.94-12.72zM611.36 289.78c-8.12-6.22-17.78-20.18-13.3-26s21.39-1.35 29.51 4.87 11.06 16 6.59 21.84-14.69 5.51-22.8-.71zM661.84 184.68c-8.12-6.22-17.78-20.19-13.3-26s21.39-1.35 29.51 4.87 11.06 16 6.59 21.84-14.64 5.51-22.8-.71zM574.65 214.94c-4.25-9.3-6.22-26.17.48-29.23s19.52 8.85 23.77 18.15 2.26 19.32-4.43 22.38-15.57-2-19.82-11.3zM597.14 148.09c-8.78-5.24-20-18-16.22-24.32S602 120 610.8 125.19s12.84 14.61 9.07 20.93-13.95 7.2-22.73 1.97zM684.64 100c-9.65 3.37-26.63 3.77-29-3.18s10.62-18.62 20.27-22 19.44-.47 21.87 6.48-3.48 15.3-13.14 18.7zM710.05 150.17c-9-4.89-20.67-17.21-17.14-23.67s20.93-4.62 29.91.27 13.39 14.1 9.87 20.57-13.69 7.73-22.64 2.83z" fill="#4d4d4d" />
+                </g>
+            </svg>
+
+            <svg id="Watermelon2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 864.55 603.11">
+                <g>
+                    <path d="M0 297.76S349.15 169.9 389.89 160.7s206.63-84 257.51-90.53S847 0 847 0s55.15 258.22-30.19 369.17c-45.47 59.13-103.75 180.65-231.43 196 0 0-300.65 134.93-481.9-104.07C69.49 416.23 30.19 366.14 0 297.76z" fill="#95b341" />
+                    <path d="M45.52 282.68L804.2 16s132.06 336.6-234.33 506.2c0 0-353.45 147.59-524.35-239.52z" fill="#ffeab2" />
+                    <path d="M84.55 268.84s156.82-83.62 176.06-79.29c14.58 3.27 175.8-44.41 175.8-44.41l134.36-57.28 185.41-55.13s116.91 298-207.45 448.14c0 0-312.89 130.66-464.18-212.03z" fill="#ff5765" />
+                    <path d="M465.73 358.77c-5.28-8.76-9.17-25.29-2.86-29.09s20.41 6.57 25.69 15.32 4.45 18.93-1.86 22.74-15.7-.22-20.97-8.97zM376.65 371c1.19-10.15 8.24-25.6 15.56-24.74s12.1 17.69 10.91 27.85S395 391.82 387.73 391s-12.28-9.83-11.08-20zM213.72 336.11c4.6-9.13 16.54-21.21 23.11-17.9s5.3 20.77.69 29.9-13.66 13.89-20.23 10.53-8.17-13.4-3.57-22.53zM180.64 264.78c8.64-5.46 25.09-9.7 29-3.47s-6.13 20.54-14.77 26-18.84 4.85-22.77-1.37-.1-15.69 8.54-21.16zM284.9 279.1c-.95-10.18 2.75-26.76 10.08-27.44s15.52 14.79 16.46 25-4.23 19-11.56 19.67-14.03-7.05-14.98-17.23zM390.85 242.87c-3.56-9.58-4.3-26.55 2.6-29.11s18.83 10.25 22.39 19.83.85 19.43-6 22-15.43-3.13-18.99-12.72zM525.79 306.66c-6.88-7.56-13.91-23-8.46-28s21.29 2.48 28.17 10 8 17.7 2.6 22.66-15.43 2.9-22.31-4.66zM480.08 193.53c-3.56-9.59-4.3-26.55 2.6-29.12s18.83 10.25 22.39 19.84.85 19.43-6.05 22-15.38-3.14-18.94-12.72zM611.36 289.78c-8.12-6.22-17.78-20.18-13.3-26s21.39-1.35 29.51 4.87 11.06 16 6.59 21.84-14.69 5.51-22.8-.71zM661.84 184.68c-8.12-6.22-17.78-20.19-13.3-26s21.39-1.35 29.51 4.87 11.06 16 6.59 21.84-14.64 5.51-22.8-.71zM574.65 214.94c-4.25-9.3-6.22-26.17.48-29.23s19.52 8.85 23.77 18.15 2.26 19.32-4.43 22.38-15.57-2-19.82-11.3zM597.14 148.09c-8.78-5.24-20-18-16.22-24.32S602 120 610.8 125.19s12.84 14.61 9.07 20.93-13.95 7.2-22.73 1.97zM684.64 100c-9.65 3.37-26.63 3.77-29-3.18s10.62-18.62 20.27-22 19.44-.47 21.87 6.48-3.48 15.3-13.14 18.7zM710.05 150.17c-9-4.89-20.67-17.21-17.14-23.67s20.93-4.62 29.91.27 13.39 14.1 9.87 20.57-13.69 7.73-22.64 2.83z" fill="#4d4d4d" />
+                </g>
+            </svg>
+
+            <svg id="Watermelon3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 864.55 603.11">
+                <g>
+                    <path d="M0 297.76S349.15 169.9 389.89 160.7s206.63-84 257.51-90.53S847 0 847 0s55.15 258.22-30.19 369.17c-45.47 59.13-103.75 180.65-231.43 196 0 0-300.65 134.93-481.9-104.07C69.49 416.23 30.19 366.14 0 297.76z" fill="#95b341" />
+                    <path d="M45.52 282.68L804.2 16s132.06 336.6-234.33 506.2c0 0-353.45 147.59-524.35-239.52z" fill="#ffeab2" />
+                    <path d="M84.55 268.84s156.82-83.62 176.06-79.29c14.58 3.27 175.8-44.41 175.8-44.41l134.36-57.28 185.41-55.13s116.91 298-207.45 448.14c0 0-312.89 130.66-464.18-212.03z" fill="#ff5765" />
+                    <path d="M465.73 358.77c-5.28-8.76-9.17-25.29-2.86-29.09s20.41 6.57 25.69 15.32 4.45 18.93-1.86 22.74-15.7-.22-20.97-8.97zM376.65 371c1.19-10.15 8.24-25.6 15.56-24.74s12.1 17.69 10.91 27.85S395 391.82 387.73 391s-12.28-9.83-11.08-20zM213.72 336.11c4.6-9.13 16.54-21.21 23.11-17.9s5.3 20.77.69 29.9-13.66 13.89-20.23 10.53-8.17-13.4-3.57-22.53zM180.64 264.78c8.64-5.46 25.09-9.7 29-3.47s-6.13 20.54-14.77 26-18.84 4.85-22.77-1.37-.1-15.69 8.54-21.16zM284.9 279.1c-.95-10.18 2.75-26.76 10.08-27.44s15.52 14.79 16.46 25-4.23 19-11.56 19.67-14.03-7.05-14.98-17.23zM390.85 242.87c-3.56-9.58-4.3-26.55 2.6-29.11s18.83 10.25 22.39 19.83.85 19.43-6 22-15.43-3.13-18.99-12.72zM525.79 306.66c-6.88-7.56-13.91-23-8.46-28s21.29 2.48 28.17 10 8 17.7 2.6 22.66-15.43 2.9-22.31-4.66zM480.08 193.53c-3.56-9.59-4.3-26.55 2.6-29.12s18.83 10.25 22.39 19.84.85 19.43-6.05 22-15.38-3.14-18.94-12.72zM611.36 289.78c-8.12-6.22-17.78-20.18-13.3-26s21.39-1.35 29.51 4.87 11.06 16 6.59 21.84-14.69 5.51-22.8-.71zM661.84 184.68c-8.12-6.22-17.78-20.19-13.3-26s21.39-1.35 29.51 4.87 11.06 16 6.59 21.84-14.64 5.51-22.8-.71zM574.65 214.94c-4.25-9.3-6.22-26.17.48-29.23s19.52 8.85 23.77 18.15 2.26 19.32-4.43 22.38-15.57-2-19.82-11.3zM597.14 148.09c-8.78-5.24-20-18-16.22-24.32S602 120 610.8 125.19s12.84 14.61 9.07 20.93-13.95 7.2-22.73 1.97zM684.64 100c-9.65 3.37-26.63 3.77-29-3.18s10.62-18.62 20.27-22 19.44-.47 21.87 6.48-3.48 15.3-13.14 18.7zM710.05 150.17c-9-4.89-20.67-17.21-17.14-23.67s20.93-4.62 29.91.27 13.39 14.1 9.87 20.57-13.69 7.73-22.64 2.83z" fill="#4d4d4d" />
+                </g>
+            </svg>
+
+
+        </div>
+
+        <div class="strip">
+            <img src="images/eat-well-strip.jpg" alt="fruit">
+<!--            Doan, Trang. 2017. "Assorted Dishes on Plate". Pexels. https://www.pexels.com/photo/assorted-dishes-on-plate-793765/-->
+
+        </div>
+
+        <div class="eat-well-body">
+<!--           Beyond Blue. 2019. "Staying Well - Eating". Beyond Blue.https://www.beyondblue.org.au/get-support/staying-well/eating--->
+            <p>
+                Food plays a vital role in maintaining physical and mental health. Eating a nourishing, balanced diet helps to give people an overall sense of wellbeing.
+
+            </p>
+
+            <ul>
+                <li>Eat plenty of vegetables, legumes and fruits.</li>
+                <li>Eat plenty of cereals, preferably wholegrain, such as breads, rice, pasta and noodles.</li>
+                <li>Include lean meat, fish, poultry and/or alternatives.</li>
+                <li>Include milks, yoghurts, cheeses and/or alternatives (preferably low-fat varieties).</li>
+                <li>Drink plenty of water.</li>
+                <li>Limit intake of foods containing saturated fat, added salt, added sugars and alcohol.</li>
+
+            </ul>
+
+        </div>
+
+        <!--            next exercise section -->
+        <div class="exercise-title">
+            <h1>Keep active and outdoors</h1>
+
+        </div>
+
+
+        <div class="exercise-container">
+            <img src="images/exercise.jpg" alt="a man in a car outside">
+<!--            Krasilnikov, Vova. 2019. "Man Sitting on a hatchback vehicle". Pexels. https://www.pexels.com/photo/man-sitting-on-a-hatchback-vehicle-2847040/-->
+
+            <svg id="Flower1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 359.42 377.9">
+                <g>
+                    <path d="M340.68 94.68c1.89-15.06-15-23.07-27.6-33a79.63 79.63 0 0 0-12-7.84c-6.49-20-26.74-8.48-40.26-5.72l-82-7.47-40 70.85 53 58.83c1 2.5 1.56 5.18 2.91 7.51l29.59 17.7 100.24 5.54c13.18-7.61 17.64-21.31 27.3-30.75 13.79-13.48 4.9-47.9-11.1-75.63z" fill="#f4f4f4" />
+                    <path d="M326.32 175.35c-18.89-10.89-45.18-15.36-70.47-12-27.89 3.72-50 16.35-61.24 36l-5.4 93.46 52 30c20.18 11.64 53.36 23 61.39 1.71a79.54 79.54 0 0 0 11.8-7.65c13-10.11 22.33-23.34 28.33-33.73 7.17-12.43 22.84-11.31 14.12-36.31-10.16-29.17-4.67-56.54-30.53-71.48z" fill="#d8d8d8" />
+                    <path d="M180.57 206.5L95.45 308.64c0 27.21 7.12 57.15 39.1 59.19 14 .89 28.34 8.89 46 8.89a121.67 121.67 0 0 0 34.78-4.72c31.41-9.4 50.35-32.24 50.35-63.37 0-45.01-40.08-102.13-85.11-102.13z" fill="#f4f4f4" />
+                    <path d="M265.68 308.64c0-45-40.08-102.14-85.11-102.14v170.22c51.06 8.07 85.11-26.72 85.11-68.08z" fill="#f4f4f4" />
+                    <path d="M165.47 194.61l-62.19-49.51-66.62 28.06C3.35 192.4-15.43 236.44 16.34 271.9c1.9 2.11 2.64 5.09 4.12 7.65A123.34 123.34 0 0 0 41 306.38a83.5 83.5 0 0 0 19.08 14c-.51 19.38 40.89 9.68 60.61-1.7 38.49-22.22 67.54-84.69 44.78-124.1z" fill="#d8d8d8" />
+                    <path d="M120.69 55.51c-14.44-8.33 17.56-30.89 2.88-27.72C118 29 69 37.78 63.57 40.63c-20.51-7.38-42 35.7-43.11 54.05a125.75 125.75 0 0 0-10.89 24.1c-11.3 34.79-1.75 65.63 27.09 82.29C56.6 212.56 83 216 106.23 213c48-6.41 57.11-32.25 60.47-35.5l5.3-58.72z" fill="#f4f4f4" />
+                    <path d="M180.57 2.24c-20-8.45-35.63 9.74-51.07 11.38-29.93 3.17-34 31.41-34 56.7 0 45 40.08 102.14 85.12 102.14h11.31C177.06 134 204.65 77.31 241.21 56.2a67.38 67.38 0 0 1 20.62-7.51 61.48 61.48 0 0 0-24.31-31.3c-14.37-9.72-33.77-15.15-57-15.15z" fill="#d8d8d8" />
+                    <path d="M240.44 55.51a66.82 66.82 0 0 1 20.36-7.41c-9.69-28.33-37.68-56.31-80.23-45.86v168.07h11.17c-14.63-37.95 12.6-93.95 48.7-114.8z" fill="#d8d8d8" />
+                    <path d="M180.57 138.41c-12.55 0-26-1.07-32.89 12-6.8 12.85-18.18 23.39-18.18 39.1a50.88 50.88 0 0 0 14.94 36.13c9.23 9.23 16.13 26.18 36.13 14.94 8.11-4.57 18-2.48 25.54-6.81a51.07 51.07 0 0 0-25.54-95.33z" fill="#ffb05a" />
+                    <path d="M231.63 189.48c8.5 23.77-22.81 51.07-51.06 51.07V138.41c25.92-9.33 42.55 27.27 51.06 51.07z" fill="#ffb05a" />
+                </g>
+            </svg>
+
+            <svg id="Flower2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 359.42 377.9">
+                <g>
+                    <path d="M340.68 94.68c1.89-15.06-15-23.07-27.6-33a79.63 79.63 0 0 0-12-7.84c-6.49-20-26.74-8.48-40.26-5.72l-82-7.47-40 70.85 53 58.83c1 2.5 1.56 5.18 2.91 7.51l29.59 17.7 100.24 5.54c13.18-7.61 17.64-21.31 27.3-30.75 13.79-13.48 4.9-47.9-11.1-75.63z" fill="#f4f4f4" />
+                    <path d="M326.32 175.35c-18.89-10.89-45.18-15.36-70.47-12-27.89 3.72-50 16.35-61.24 36l-5.4 93.46 52 30c20.18 11.64 53.36 23 61.39 1.71a79.54 79.54 0 0 0 11.8-7.65c13-10.11 22.33-23.34 28.33-33.73 7.17-12.43 22.84-11.31 14.12-36.31-10.16-29.17-4.67-56.54-30.53-71.48z" fill="#d8d8d8" />
+                    <path d="M180.57 206.5L95.45 308.64c0 27.21 7.12 57.15 39.1 59.19 14 .89 28.34 8.89 46 8.89a121.67 121.67 0 0 0 34.78-4.72c31.41-9.4 50.35-32.24 50.35-63.37 0-45.01-40.08-102.13-85.11-102.13z" fill="#f4f4f4" />
+                    <path d="M265.68 308.64c0-45-40.08-102.14-85.11-102.14v170.22c51.06 8.07 85.11-26.72 85.11-68.08z" fill="#f4f4f4" />
+                    <path d="M165.47 194.61l-62.19-49.51-66.62 28.06C3.35 192.4-15.43 236.44 16.34 271.9c1.9 2.11 2.64 5.09 4.12 7.65A123.34 123.34 0 0 0 41 306.38a83.5 83.5 0 0 0 19.08 14c-.51 19.38 40.89 9.68 60.61-1.7 38.49-22.22 67.54-84.69 44.78-124.1z" fill="#d8d8d8" />
+                    <path d="M120.69 55.51c-14.44-8.33 17.56-30.89 2.88-27.72C118 29 69 37.78 63.57 40.63c-20.51-7.38-42 35.7-43.11 54.05a125.75 125.75 0 0 0-10.89 24.1c-11.3 34.79-1.75 65.63 27.09 82.29C56.6 212.56 83 216 106.23 213c48-6.41 57.11-32.25 60.47-35.5l5.3-58.72z" fill="#f4f4f4" />
+                    <path d="M180.57 2.24c-20-8.45-35.63 9.74-51.07 11.38-29.93 3.17-34 31.41-34 56.7 0 45 40.08 102.14 85.12 102.14h11.31C177.06 134 204.65 77.31 241.21 56.2a67.38 67.38 0 0 1 20.62-7.51 61.48 61.48 0 0 0-24.31-31.3c-14.37-9.72-33.77-15.15-57-15.15z" fill="#d8d8d8" />
+                    <path d="M240.44 55.51a66.82 66.82 0 0 1 20.36-7.41c-9.69-28.33-37.68-56.31-80.23-45.86v168.07h11.17c-14.63-37.95 12.6-93.95 48.7-114.8z" fill="#d8d8d8" />
+                    <path d="M180.57 138.41c-12.55 0-26-1.07-32.89 12-6.8 12.85-18.18 23.39-18.18 39.1a50.88 50.88 0 0 0 14.94 36.13c9.23 9.23 16.13 26.18 36.13 14.94 8.11-4.57 18-2.48 25.54-6.81a51.07 51.07 0 0 0-25.54-95.33z" fill="#ffb05a" />
+                    <path d="M231.63 189.48c8.5 23.77-22.81 51.07-51.06 51.07V138.41c25.92-9.33 42.55 27.27 51.06 51.07z" fill="#ffb05a" />
+                </g>
+            </svg>
+
+            <svg id="Flower3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 359.42 377.9">
+                <g>
+                    <path d="M340.68 94.68c1.89-15.06-15-23.07-27.6-33a79.63 79.63 0 0 0-12-7.84c-6.49-20-26.74-8.48-40.26-5.72l-82-7.47-40 70.85 53 58.83c1 2.5 1.56 5.18 2.91 7.51l29.59 17.7 100.24 5.54c13.18-7.61 17.64-21.31 27.3-30.75 13.79-13.48 4.9-47.9-11.1-75.63z" fill="#f4f4f4" />
+                    <path d="M326.32 175.35c-18.89-10.89-45.18-15.36-70.47-12-27.89 3.72-50 16.35-61.24 36l-5.4 93.46 52 30c20.18 11.64 53.36 23 61.39 1.71a79.54 79.54 0 0 0 11.8-7.65c13-10.11 22.33-23.34 28.33-33.73 7.17-12.43 22.84-11.31 14.12-36.31-10.16-29.17-4.67-56.54-30.53-71.48z" fill="#d8d8d8" />
+                    <path d="M180.57 206.5L95.45 308.64c0 27.21 7.12 57.15 39.1 59.19 14 .89 28.34 8.89 46 8.89a121.67 121.67 0 0 0 34.78-4.72c31.41-9.4 50.35-32.24 50.35-63.37 0-45.01-40.08-102.13-85.11-102.13z" fill="#f4f4f4" />
+                    <path d="M265.68 308.64c0-45-40.08-102.14-85.11-102.14v170.22c51.06 8.07 85.11-26.72 85.11-68.08z" fill="#f4f4f4" />
+                    <path d="M165.47 194.61l-62.19-49.51-66.62 28.06C3.35 192.4-15.43 236.44 16.34 271.9c1.9 2.11 2.64 5.09 4.12 7.65A123.34 123.34 0 0 0 41 306.38a83.5 83.5 0 0 0 19.08 14c-.51 19.38 40.89 9.68 60.61-1.7 38.49-22.22 67.54-84.69 44.78-124.1z" fill="#d8d8d8" />
+                    <path d="M120.69 55.51c-14.44-8.33 17.56-30.89 2.88-27.72C118 29 69 37.78 63.57 40.63c-20.51-7.38-42 35.7-43.11 54.05a125.75 125.75 0 0 0-10.89 24.1c-11.3 34.79-1.75 65.63 27.09 82.29C56.6 212.56 83 216 106.23 213c48-6.41 57.11-32.25 60.47-35.5l5.3-58.72z" fill="#f4f4f4" />
+                    <path d="M180.57 2.24c-20-8.45-35.63 9.74-51.07 11.38-29.93 3.17-34 31.41-34 56.7 0 45 40.08 102.14 85.12 102.14h11.31C177.06 134 204.65 77.31 241.21 56.2a67.38 67.38 0 0 1 20.62-7.51 61.48 61.48 0 0 0-24.31-31.3c-14.37-9.72-33.77-15.15-57-15.15z" fill="#d8d8d8" />
+                    <path d="M240.44 55.51a66.82 66.82 0 0 1 20.36-7.41c-9.69-28.33-37.68-56.31-80.23-45.86v168.07h11.17c-14.63-37.95 12.6-93.95 48.7-114.8z" fill="#d8d8d8" />
+                    <path d="M180.57 138.41c-12.55 0-26-1.07-32.89 12-6.8 12.85-18.18 23.39-18.18 39.1a50.88 50.88 0 0 0 14.94 36.13c9.23 9.23 16.13 26.18 36.13 14.94 8.11-4.57 18-2.48 25.54-6.81a51.07 51.07 0 0 0-25.54-95.33z" fill="#ffb05a" />
+                    <path d="M231.63 189.48c8.5 23.77-22.81 51.07-51.06 51.07V138.41c25.92-9.33 42.55 27.27 51.06 51.07z" fill="#ffb05a" />
+                </g>
+            </svg>
+
+            <svg id="Flower4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 359.42 377.9">
+                <g>
+                    <path d="M340.68 94.68c1.89-15.06-15-23.07-27.6-33a79.63 79.63 0 0 0-12-7.84c-6.49-20-26.74-8.48-40.26-5.72l-82-7.47-40 70.85 53 58.83c1 2.5 1.56 5.18 2.91 7.51l29.59 17.7 100.24 5.54c13.18-7.61 17.64-21.31 27.3-30.75 13.79-13.48 4.9-47.9-11.1-75.63z" fill="#f4f4f4" />
+                    <path d="M326.32 175.35c-18.89-10.89-45.18-15.36-70.47-12-27.89 3.72-50 16.35-61.24 36l-5.4 93.46 52 30c20.18 11.64 53.36 23 61.39 1.71a79.54 79.54 0 0 0 11.8-7.65c13-10.11 22.33-23.34 28.33-33.73 7.17-12.43 22.84-11.31 14.12-36.31-10.16-29.17-4.67-56.54-30.53-71.48z" fill="#d8d8d8" />
+                    <path d="M180.57 206.5L95.45 308.64c0 27.21 7.12 57.15 39.1 59.19 14 .89 28.34 8.89 46 8.89a121.67 121.67 0 0 0 34.78-4.72c31.41-9.4 50.35-32.24 50.35-63.37 0-45.01-40.08-102.13-85.11-102.13z" fill="#f4f4f4" />
+                    <path d="M265.68 308.64c0-45-40.08-102.14-85.11-102.14v170.22c51.06 8.07 85.11-26.72 85.11-68.08z" fill="#f4f4f4" />
+                    <path d="M165.47 194.61l-62.19-49.51-66.62 28.06C3.35 192.4-15.43 236.44 16.34 271.9c1.9 2.11 2.64 5.09 4.12 7.65A123.34 123.34 0 0 0 41 306.38a83.5 83.5 0 0 0 19.08 14c-.51 19.38 40.89 9.68 60.61-1.7 38.49-22.22 67.54-84.69 44.78-124.1z" fill="#d8d8d8" />
+                    <path d="M120.69 55.51c-14.44-8.33 17.56-30.89 2.88-27.72C118 29 69 37.78 63.57 40.63c-20.51-7.38-42 35.7-43.11 54.05a125.75 125.75 0 0 0-10.89 24.1c-11.3 34.79-1.75 65.63 27.09 82.29C56.6 212.56 83 216 106.23 213c48-6.41 57.11-32.25 60.47-35.5l5.3-58.72z" fill="#f4f4f4" />
+                    <path d="M180.57 2.24c-20-8.45-35.63 9.74-51.07 11.38-29.93 3.17-34 31.41-34 56.7 0 45 40.08 102.14 85.12 102.14h11.31C177.06 134 204.65 77.31 241.21 56.2a67.38 67.38 0 0 1 20.62-7.51 61.48 61.48 0 0 0-24.31-31.3c-14.37-9.72-33.77-15.15-57-15.15z" fill="#d8d8d8" />
+                    <path d="M240.44 55.51a66.82 66.82 0 0 1 20.36-7.41c-9.69-28.33-37.68-56.31-80.23-45.86v168.07h11.17c-14.63-37.95 12.6-93.95 48.7-114.8z" fill="#d8d8d8" />
+                    <path d="M180.57 138.41c-12.55 0-26-1.07-32.89 12-6.8 12.85-18.18 23.39-18.18 39.1a50.88 50.88 0 0 0 14.94 36.13c9.23 9.23 16.13 26.18 36.13 14.94 8.11-4.57 18-2.48 25.54-6.81a51.07 51.07 0 0 0-25.54-95.33z" fill="#ffb05a" />
+                    <path d="M231.63 189.48c8.5 23.77-22.81 51.07-51.06 51.07V138.41c25.92-9.33 42.55 27.27 51.06 51.07z" fill="#ffb05a" />
+                </g>
+            </svg>
+
+
+        </div>
+
+        <div class="strip2">
+            <img src="images/exercise-strip.jpg" alt="greenery">
+
+        </div>
+        
+        <div class="exercise-body">
+            <p>Physical activity increases your wellbeing. The current recommendation is at least 30 minutes of moderate intensity physical activity on most, and preferably all, days of the week.1 However, people with anxiety or depression may find it difficult to get started or get motivated, or continue to exercise on a long-term basis.</p>
+            
+            <p>Research shows that keeping active can:</p>
+
+            <ul>
+                <li>help lift mood through improved fitness and the release of natural chemicals in the brain
+                <li>help improve sleeping patterns</li>
+                <li>increase energy levels</li>
+                <li>help block negative thoughts and/or distract people from daily worries</li>
+                <li>help people feel less alone if they exercise with others.</li>
+            </ul>
+            
+            <!--  Beyond Blue. 2019. "Staying Well - Keeping Active". Beyond Blue.https://www.beyondblue.org.au/get-support/staying-well/eatinghttps://www.beyondblue.org.au/get-support/staying-well/keeping-active-->
+
+        </div>
+        <!--            end-->
+    </section>
+
+    <section class="story-submission">
+        <div class="story-sub-title">
+            <h1>What's Your Story? </h1>
+        </div>
+
+        <div class="story-colour-block">
+
+        </div>
+
+        <div class="story-hero">
+            <img src="images/storytime.jpg" alt="a man sitting on a bench">
+        </div>
+        <div class="form-container">
+            <div id="loading-circle"></div>
+            <div class="tick-complete">
+                <h1>Thanks for submitting!</h1>
+
+            </div>
+            <form id="my-form" onsubmit="return false">
+                <label for="firstname">First Name:</label><br>
+
+                <input id="firstname" type="text" name="user_firstname" placeholder="John" required><br>
+
+                <label for="lastname">Last Name:</label><br>
+
+                <input id="lastname" type="text" name="user_lastname" placeholder="Smith" required><br>
+
+
+                <label for="email">Email Address:</label><br>
+
+                <input id="email" type="text" name="user_email" placeholder="john.smith@gmail.com" required><br>
+
+                <label for="story">Your Story:</label><br>
+
+                <input id="story" type="text" name="user_story" placeholder="type something..." required><br>
+
+
+                <input class="submit-button" type="submit" value="Submit">
+
+
+
+
+            </form>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>This website has been created as part of an assignment in an approved course of study for Curtin University and contains copyright material not created by the author. All copyright material used remains copyright of the respective owners and has been used here pursuant to Section 40 of the Copyright Act 1968 (Commonwealth of Australia). No part of this work may be reproduced without consent of the original copyright owners. See code comments for references.</p>
+
+</footer>
+
+
+
+
+
+
+</html>
