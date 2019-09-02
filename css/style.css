@@ -1,0 +1,844 @@
+body,
+p {
+    margin: 0;
+}
+
+html,
+body {
+    overflow: hidden;
+    height: 100%;
+
+}
+
+
+/* setting up grid elements and dividing into 3 full page sections */
+.home img {
+    object-fit: cover;
+    max-width: 100%;
+    height: 100%;
+    width: 100%;
+}
+
+.home {
+    height: 100vh;
+    background: #121212;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    grid-gap: 10px;
+    align-items: center;
+}
+
+.stories {
+    height: 100vh;
+    background: white;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    grid-gap: 2em;
+    z-index: -999;
+}
+
+.tips {
+    height: 200vh;
+    background: white;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    grid-gap: 2em;
+}
+
+.story-submission {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-gap: 20px;
+    box-sizing: border-box;
+}
+
+/*home page elements*/
+
+p, li {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 2vh
+}
+
+h1 {
+    font-family: neue-haas-grotesk-text, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 60%, #aaaaaa 60%);
+    display: inline;
+    font-size: 5vh;
+
+
+
+}
+
+h2 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+}
+
+.home-hero-image {
+    display: none;
+    filter: grayscale(100%);
+    transition: filter 1s ease-in-out;
+
+}
+
+
+.hero-timer {
+    grid-column: 3 / span 3;
+    grid-row: 2 / span 6;
+}
+
+
+.hero-timer-ring {
+    grid-column: 3 / span 3;
+    grid-row: 2 / span 6;
+    width: 100%;
+    justify-self: start;
+    animation: timerPulse 15s ease-in-out both infinite;
+    display: none;
+
+}
+
+.hero-text {
+    color: white;
+    grid-column: 5 / span 3;
+    grid-row: 6 / span 1;
+    z-index: 1;
+    display: none;
+
+}
+
+.scroll-indicator {
+    max-width: 20%;
+    width: 15%;
+    grid-column: 4 / span 1;
+    grid-row: 8 / span 1;
+    justify-self: start;
+    align-self: center;
+    display: none;
+
+}
+
+.scroll-text {
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    font-size: 0.8em;
+    grid-column: 4 / span 2;
+    grid-row: 8 / span 1;
+    align-self: center;
+    justify-self: center;
+    padding-right: 5em;
+    padding-bottom: 2em;
+    display: none;
+
+
+}
+
+
+
+#Inner_Ring {
+    stroke-linecap: round;
+    transform-origin: center;
+    stroke-dasharray: 2317;
+    animation: timer 15s ease-in-out forwards infinite;
+
+}
+
+/* Mouse animation */
+
+#arrow {
+    stroke-linecap: round;
+    stroke-dasharray: 27;
+    animation: draw1 1s ease-in-out forwards reverse, arrowMove 0.5s 2s ease-in-out forwards alternate infinite;
+
+
+}
+
+
+#outside {
+    stroke-linecap: round;
+    stroke-dasharray: 160;
+    animation: draw2 3s 4s ease-in-out forwards reverse;
+    animation-iteration-count: 2;
+
+}
+
+#buttonclick {
+    opacity: 0;
+    animation: draw3 2s ease-in-out forwards infinite, flick 1s cubic-bezier(.56, .69, .43, 1.26) forwards alternate infinite;
+}
+
+
+/* Stories LAyout */
+
+.story-left img,
+.story-right-top img,
+.story-right-bottom img {
+    filter: grayscale(100%);
+    object-fit: cover;
+    max-width: 100%;
+    height: 100%;
+    width: 100%;
+    transition: filter 1s ease-in-out;
+}
+
+.main-description {
+    background-color: #dddddd;
+    grid-column: 4 / span 2;
+    grid-row: 4 / span 4;
+
+
+}
+
+.main-description p {
+    padding: 3em 1em 0.5em 1em;
+    font-style: italic;
+
+}
+
+.header-text {
+    grid-column: 4 / span 2;
+    grid-row: 2 / span 2;
+    z-index: 1;
+    transition: transform 1s ease-in-out;
+
+}
+
+
+.header-text h1,
+.tips h1,
+.story-sub-title h1 {
+    font-size: 6vh;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 60%, #4fc6e4 60%);
+
+}
+
+
+
+.header-text:hover {
+    transform: translate3d(0px, -11.33px, 0px) scale(1.01);
+}
+
+.story-left {
+    grid-column: 2 / span 2;
+    grid-row: 2 / span 6;
+    transition: transform 1s ease-in-out;
+}
+
+.story-left:hover {
+    transform: translate3d(0px, -11.33px, 0px) scale(1.03);
+}
+
+.story-right-top {
+    transition: transform 1s ease-in-out;
+
+
+}
+
+.story-right-top:hover {
+    transform: translate3d(0px, 22px, 0px) scale(1.03);
+}
+
+.story-right-bottom {
+    transition: transform 1s ease-in-out;
+
+
+}
+
+.story-right-bottom:hover {
+    transform: translate3d(22px, 0px, 0px) scale(1.03);
+}
+
+
+.story-right-top {
+    grid-column: 6 / span 2;
+    grid-row: 5 / span 3;
+
+}
+
+.story-right-bottom {
+    grid-column: 6 / span 2;
+    grid-row: 2 / span 3;
+
+
+}
+
+/* Set up tips page layout */
+.eat-well-container img,
+.exercise-container img,
+.mates-container img {
+    filter: grayscale(100%);
+    object-fit: cover;
+    max-width: 100%;
+    height: 100%;
+    width: 100%;
+    transition: filter 1s ease-in-out;
+    z-index: 999;
+}
+
+/* Eat well sub section*/
+
+.eat-well-container img {
+    object-position: 50% 10%;
+}
+
+.strip {
+    position: relative;
+    top: 1em;
+    right: 5em;
+    grid-column: 5 / span 3;
+    grid-row: 4 / span 1;
+    z-index: 999;
+    transition: transform 1s ease-in-out;
+    filter: grayscale(50%);
+}
+
+.strip img {
+
+    object-fit: cover;
+    max-width: 100%;
+    height: 70%;
+    width: 100%;
+}
+
+.striphover,
+.strip:hover {
+    transform: translate3d(0px, -11.33px, 0px) scale(1.03);
+    filter: none;
+}
+
+.eat-well-container {
+    grid-column: 2 / span 3;
+    grid-row: 2 / span 3;
+}
+
+.eat-well-body p {
+    padding: 0 1em 1em 0;
+}
+
+.eat-well-title {
+    grid-column: 5 / span 3;
+    grid-row: 2 / span 2;
+    z-index: 998;
+    transition: transform 1s ease-in-out;
+}
+
+.eat-well-body {
+    grid-column: 5 / span 3;
+    grid-row: 3/ span 1;
+}
+
+
+.eat-well-title:hover {
+    transform: translate3d(20px, 0px, 0px);
+
+}
+
+
+/*Svg watermelon*/
+#Watermelon1,
+#Watermelon2,
+#Watermelon3 {
+    display: none;
+    position: relative;
+    top: -15em;
+    left: 30em;
+    height: 15%;
+    z-index: 999;
+
+}
+
+#Watermelon2 {
+    height: 10%;
+}
+
+#Watermelon3 {
+    height: 8%;
+}
+
+.watermelon1hover {
+    animation: watermelon 2s 200ms both ease-in-out;
+}
+
+.watermelon2hover {
+    animation: watermelon2 2s 300ms both ease-in-out;
+}
+
+.watermelon3hover {
+    animation: watermelon3 2s both ease-in-out;
+}
+
+/*Exercise subsection */
+.exercise-container {
+    grid-column: 4 / span 4;
+    grid-row: 6/ span 2;
+    object-position: 70% 10%;
+}
+
+.exercise-container img {
+    object-position: 50% 35%;
+}
+
+.strip2 {
+    position: relative;
+    top: -4em;
+    right: 5em;
+    grid-column: 8 / span 1;
+    grid-row: 7 / span 2;
+    z-index: 999;
+    transition: transform 1s ease-in-out;
+    filter: grayscale(50%);
+}
+
+.strip2 img {
+    object-fit: cover;
+    max-width: 100%;
+    height: 70%;
+    width: 100%;
+}
+
+.strip2hover,
+.strip2:hover {
+    transform: translate3d(0px, -11.33px, 0px) scale(1.03);
+    filter: none;
+}
+
+.exercise-body p {
+    padding: 2em 1em 1em 0;
+}
+
+.exercise-title {
+    grid-column: 2 / span 2;
+    grid-row: 6 / span 2;
+    z-index: 998;
+    transition: transform 1s ease-in-out;
+}
+
+.exercise-body {
+    position: relative;
+    bottom: 4em;
+    grid-column: 2 / span 2;
+    grid-row: 7/ span 4;
+}
+
+
+.exercise-title:hover,
+.story-sub-title:hover {
+    transform: translate3d(20px, 0px, 0px);
+
+}
+
+/*Svg flower*/
+#Flower1,
+#Flower2,
+#Flower3,
+#Flower4 {
+    display: none;
+    position: relative;
+    top: -15em;
+    left: 40em;
+    height: 15%;
+    z-index: 999;
+
+}
+
+#Flower2 {
+    height: 10%;
+}
+
+#Flower3 {
+    height: 8%;
+}
+
+#Flower4 {
+    height: 18%;
+}
+
+.flower1hover {
+    animation: flower 2s both ease-in-out;
+}
+
+.flower2hover {
+    animation: flower2 2s both ease-in-out;
+}
+
+.flower3hover {
+    animation: flower3 1s both ease-in-out;
+}
+
+.flower4hover {
+    animation: flower4 1s both ease-in-out;
+}
+
+
+.form-container {
+    width: 100%;
+    grid-column: 5 / span 3;
+    grid-row: 2 / span 2;
+}
+
+
+form input {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    font-size: 1.5vh;
+    background: #dddd;
+}
+
+form {
+    font-family: neue-haas-grotesk-text, sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 1em;
+    margin: auto;
+    padding: 20px;
+}
+
+.submit-button {
+    font-family: neue-haas-grotesk-text, sans-serif;
+    font-weight: 700;
+    color: white;
+    font-style: normal;
+    font-size: 1em;
+
+}
+
+form input {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 1px #dddddd solid;
+}
+
+form input:last-of-type {
+    margin-bottom: 0;
+}
+
+form .submit-button {
+    border: none;
+    background-color: #4fc6e4;
+    padding: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+    height: 30px;
+}
+
+form input:focus {
+    border-bottom: 0.1px solid #188BE2;
+}
+
+.submit-button:hover {
+    background-color: #54A1F4;
+}
+
+
+#loading-circle {
+    display: none;
+    position: relative;
+    top: 10.5em;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 40px;
+    height: 40px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    animation: spin 0.6s ease-in infinite;
+}
+
+.tick-complete {
+    display: none;
+    padding: 8em;
+
+
+}
+
+.tick-complete h1 {
+    font-size: 6vh;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 60%, #4fc6e4 60%);
+}
+
+#story {
+    width: 100%;
+    height: 100px
+}
+
+input {
+    width: 40%
+}
+
+.story-submission img {
+    filter: grayscale(100%);
+    object-fit: cover;
+    object-position: right;
+    max-width: 100%;
+    height: 100%;
+    width: 100%;
+    transition: filter 1s ease-in-out;
+    z-index: 999;
+}
+
+.story-hero {
+    grid-row: 2 / span 2;
+    grid-column: 2 / span 3;
+}
+
+.story-sub-title {
+    grid-column: 2 / span 2;
+    grid-row: 3 / span 1;
+    transition: transform 1s ease-in-out;
+    z-index: 999;
+    position: relative;
+    top: 9em;
+    right: 1em;
+}
+
+.story-colour-block {
+    background: #e5e5e5;
+    position: relative;
+    top: 3em;
+    left: 1em;
+    grid-column: 4 / span 1;
+    grid-row: 3 / span 1;
+    z-index: 999;
+
+}
+
+footer {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    padding-bottom: 2em
+}
+
+footer p {
+    grid-column: 2 / span 6;
+
+}
+
+/*
+Mates subsection 
+.mates-container {
+    grid-column: 2 / span 3; 
+    grid-row: 7 / span 2;
+}
+*/
+/*Keyframes */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/*Watermelon sketch */
+@keyframes watermelon {
+    0% {
+        transform: translate(0, 0);
+        transform: rotate(300deg)
+    }
+
+
+    100% {
+        transform: translate(-20em, -10em);
+
+    }
+}
+
+@keyframes watermelon2 {
+    0% {
+        transform: translate(0, 0);
+        transform: rotate(-250deg)
+    }
+
+    100% {
+        transform: translate(-20em, -30em);
+
+    }
+}
+
+@keyframes watermelon3 {
+    0% {
+        transform: translate(0, 0);
+        transform: rotate(-100deg)
+    }
+
+    100% {
+        transform: translate(-40em, -25em);
+
+    }
+}
+
+/*Flower Sketch*/
+
+@keyframes flower {
+    0% {
+        transform: translate(0, 0);
+        transform: rotate(300deg)
+    }
+
+
+    100% {
+        transform: translate(-7em, -10em);
+
+    }
+}
+
+@keyframes flower2 {
+    0% {
+        transform: translate(0, 0);
+        transform: rotate(-350deg)
+    }
+
+    100% {
+        transform: translate(-5em, -7em);
+
+    }
+}
+
+@keyframes flower3 {
+    0% {
+        transform: translate(0, 0);
+        transform: rotate(-200deg)
+    }
+
+    100% {
+        transform: translate(-20em, -7em);
+
+    }
+}
+
+@keyframes flower4 {
+    0% {
+        transform: translate(0, 0);
+        transform: rotate(190deg)
+    }
+
+    100% {
+        transform: translate(-15em, 12.5em);
+
+    }
+}
+
+/* Mouse animation */
+
+@keyframes flick {
+    100% {
+        transform: translateY(0.8em);
+    }
+}
+
+@keyframes draw3 {
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes draw1 {
+    0% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 27;
+    }
+
+}
+
+@keyframes draw2 {
+    0% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 160;
+    }
+
+}
+
+@keyframes arrowMove {
+    100% {
+        transform: translateY(0.5em);
+    }
+}
+
+/* animate the ring timer */
+
+
+@keyframes timer {
+    0% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 2317;
+    }
+
+}
+
+@keyframes timerPulse {
+    30% {
+        transform: scale(1.03);
+    }
+
+
+    50% {
+        transform: scale(1);
+    }
+
+    70% {
+        transform: scale(1.03);
+    }
+
+
+    100% {
+        transform: scale(1);
+    }
+
+}
+
+
+
+
+/*REFS
+
+Khajotia, N. 2018. "Man Crossed Arms". Pexels. https://www.pexels.com/photo/man-crossed-arms-1516680/
+
+Melo, I. 2019. "Man Wearing Black Crew-Neck T Image". Pexels. https://www.pexels.com/photo/man-wearing-blue-crew-neck-t-shirt-2379005/
+
+LinkedIN Sales Network. 2019. "Man Wearing White Dress Shirt and black blazer". Pexels. https://www.pexels.com/photo/man-wearing-white-dress-shirt-and-black-blazer-2182970/
+
+Hughes, Elle. 2019. "Man takes selfie". Pexels. https://www.pexels.com/photo/man-takes-selfie-1680175/
+
+Fotios, Lisa. 2018. "Assorted Fruits on white ceramic plate". Pexels. https://www.pexels.com/photo/assorted-fruits-on-white-ceramic-plate-1161682/
+
+Doan, Trang. 2017. "Assorted Dishes on Plate". Pexels. https://www.pexels.com/photo/assorted-dishes-on-plate-793765/
+
+Krasilnikov, Vova. 2019. "Man Sitting on a hatchback vehicle". Pexels. https://www.pexels.com/photo/man-sitting-on-a-hatchback-vehicle-2847040/
+
+LovePik. 2019. "Watermelon icon". LovePik. https://lovepik.com/image-400403396/watermelon.html
+
+Beyond Blue. 2019. "Daniel's Story". Beyond Blue. https://www.beyondblue.org.au/who-does-it-affect/personal-stories/story/daniel
+
+Beyond Blue. 2019. "Charles Story". Beyond Blue. https://www.beyondblue.org.au/who-does-it-affect/personal-stories/story/charles
+
+ Beyond Blue. 2019. "Michael's Story". Beyond Blue.https://www.beyondblue.org.au/who-does-it-affect/personal-stories/story/michael
+
+  Beyond Blue. 2019. "Staying Well - Eating". Beyond Blue.https://www.beyondblue.org.au/get-support/staying-well/eating
+
+Beyond Blue. 2019. "Staying Well - Keeping Active". Beyond Blue. https://www.beyondblue.org.au/get-support/staying-well/keeping-active
+
+*/
